@@ -1,0 +1,16 @@
+{
+    "repositories": {
+        "tylermenezes/DashTest": {
+            "secret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "branches": {
+                "master": {
+                    "directory": "/var/www/some_site",
+                    "user": "tylermenezes",
+                    "after": [
+                        ["php", "artisan", "migrate"]
+                    ]
+                }
+            }
+        }
+    }
+}

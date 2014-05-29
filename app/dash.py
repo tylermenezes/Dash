@@ -77,7 +77,7 @@ class Dash(object):
     def validate_signature(self, secret):
         rawsig = cherrypy.request.headers['X-Hub-Signature']
         (algo,sig) = rawsig.split('=', 1)
-        expected_sig = hmac.new('test', self.get_body(), hashlib.sha1).hexdigest()
+        expected_sig = hmac.new(secret, self.get_body(), hashlib.sha1).hexdigest()
         return (expected_sig == sig)
 
     def get_body(self):
@@ -86,6 +86,7 @@ class Dash(object):
             self.body = cherrypy.request.body.read(int(cl))
         return self.body
 
+cherrypy.environment = 'production'
 cherrypy.server.socket_host = '0.0.0.0'
 cherrypy.server.socket_port = 7053
 cherrypy.quickstart(Dash())
